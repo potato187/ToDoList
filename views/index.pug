@@ -9,7 +9,7 @@ body
     div(class="container")
         div(class="app")
             div(class="task-header")
-                h2(class="text-1") 04/05/2020
+                h2(class="text-1") #{date}
                 form(class="task-form",action="/api", method="post")
                     input( type="text", id="input-task" name="task", placeholder="New Task")
                     button( class="btn-add", id="btn-add" type="submit")
