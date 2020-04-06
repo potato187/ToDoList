@@ -19,8 +19,11 @@ app.set('views','./views');
 
 
 app.get('/', (req, res) =>{
+    const Tasks = db.get('tasks').value();
+    console.log(Tasks)
     res.render('index',{
-        date : new Date().toJSON().slice(0,10).replace(/-/g,'/')
+        date : new Date().toJSON().slice(0,10).replace(/-/g,'/'),
+        Tasks : Tasks
     });
 })
 

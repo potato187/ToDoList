@@ -19,22 +19,11 @@ body
                 ul  
                     li(class="task list-empty")
                         h3(class="text-3") List Is Empty
-                    li(class="task")
-                        span(class="remove") <i class="fas fa-times"></i>
-                        input(type="checkbox", class="check")
-                        label(for="" class="text") Hello World 1
-                    li(class="task")
-                        span(class="remove") <i class="fas fa-times"></i>
-                        input(type="checkbox", class="check")
-                        label(for="" class="text") Hello World 2
-                    li(class="task")
-                        span(class="remove") <i class="fas fa-times"></i>
-                        input(type="checkbox", class="check")
-                        label(for="" class="text") Hello World 3
-                    li(class="task")
-                        span(class="remove") <i class="fas fa-times"></i>
-                        input(type="checkbox", class="check")
-                        label(for="" class="text") Hello World 4
+                    each item in Tasks
+                        li(class="task")
+                            span(class="remove") <i class="fas fa-times"></i>
+                            input(type="checkbox", class="check")
+                            label(for="" class="text")= item.task    
             a(href="#", class="btn-clear") CLEAR
     script(src="/js/app.js")
 footer
