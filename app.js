@@ -1,9 +1,11 @@
 const express = require('express');
 const lowDb   = require('lowdb');
+const shortId = require('shortid');
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
+db.defaults({tasks:[]}).write();
 
 const PORT = 3000;
 
@@ -22,6 +24,10 @@ app.get('/', (req, res) =>{
     });
 })
 
+app.post('/api/', (req, res) =>{
+    db.get('tasks').push({id:shortId.generate(), task: req.body.task}).write();
+    res.redirect('/')
+})
 
 app.listen(PORT, () =>{
     console.log(`http://localhost:${3000}`);
