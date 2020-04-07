@@ -10,20 +10,20 @@ body
         div(class="app")
             div(class="task-header")
                 h2(class="text-1") #{date}
-                form(class="task-form",action="/api", method="post")
+                form(class="task-form",action="/api/create", method="post")
                     input( type="text", id="input-task" name="task", placeholder="New Task")
                     button( class="btn-add", id="btn-add" type="submit")
                         strong ADD
-                    //- button(class ="btn" id="btn-clear") Clear
             div(class="task-main")
                 ul  
-                    li(class="task list-empty")
+                    li(class="task list-empty", style=`display:${display}`)
                         h3(class="text-3") List Is Empty
                     each item in Tasks
                         li(class="task")
-                            span(class="remove") <i class="fas fa-times"></i>
+                            button(class='btn-remove', id=`${item.id}`)
+                                i(class="fas fa-times remove")
                             input(type="checkbox", class="check")
                             label(for="" class="text")= item.task    
-            a(href="#", class="btn-clear") CLEAR
+            a(href="/", class="btn-clear") CLEAR
     script(src="/js/app.js")
 footer

@@ -20,17 +20,29 @@ app.set('views','./views');
 
 app.get('/', (req, res) =>{
     const Tasks = db.get('tasks').value();
-    console.log(Tasks)
     res.render('index',{
         date : new Date().toJSON().slice(0,10).replace(/-/g,'/'),
-        Tasks : Tasks
+        Tasks : Tasks,
+        display : Tasks.length == 0 ? 'block' : 'none'
     });
 })
 
-app.post('/api/', (req, res) =>{
+app.post('/api/create', (req, res) =>{
     db.get('tasks').push({id:shortId.generate(), task: req.body.task}).write();
-    res.redirect('/')
+    res.redirect('/');
 })
+
+
+app.delete('/api/delete/:id', (req, res) =>{
+    db.get('tasks').remove({id : req.params.id}).write(); 
+    res.status(200);
+});
+
+app.delete('/api/delete/', (req, res) =>{
+    db.get('tasks').remove().write(); 
+    res.status(200);
+});
+
 
 app.listen(PORT, () =>{
     console.log(`http://localhost:${3000}`);
